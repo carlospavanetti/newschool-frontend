@@ -15,7 +15,9 @@
           required
         />
         <v-select
-          :items="items.map(item => item.letter)"
+          :items="items"
+          item-value="id"
+          item-text="letter"
           label="Alternativa correta"
         />
         <v-btn color="primary">Salvar</v-btn>
