@@ -36,6 +36,8 @@
 </template>
 
 <script>
+  import { http } from '@/services/http/config'
+
   export default {
     computed: {
       course() {
@@ -43,12 +45,12 @@
       }
     },
     asyncData({ store, data, params, $axios }) {
-      const coursePromise = $axios.get(
+      const coursePromise = http.get(
         `/api/v1/courses/${params.id}`
       ).then(res =>
         store.commit('courses/setCurrent', res.data.course)
       )
-      const classesPromise = $axios.get(
+      const classesPromise = http.get(
         `/api/v1/courses/${params.id}/classes`
       ).then(res =>
         store.commit('courses/setCurrentClasses', res.data.classes)

@@ -38,6 +38,8 @@
 
 
 <script>
+  import { http } from '@/services/http/config'
+
   export default {
     computed: {
       section() {
@@ -45,12 +47,12 @@
       }
     },
     asyncData({ store, data, params, $axios }) {
-      const sectionPromise = $axios.get(
+      const sectionPromise = http.get(
         `/api/v1/sections/${params.section_id}`
       ).then(res =>
         store.commit('courses/setCurrentSection', res.data.section)
       )
-      const questionsPromise = $axios.get(
+      const questionsPromise = http.get(
         `/api/v1/sections/${params.section_id}/questions`
       ).then(res =>
         store.commit('courses/setSectionQuestions', res.data.questions)

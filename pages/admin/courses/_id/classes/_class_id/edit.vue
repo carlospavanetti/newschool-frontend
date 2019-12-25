@@ -29,6 +29,8 @@
 
 
 <script>
+  import { http } from '@/services/http/config'
+
   export default {
     computed: {
       klass() {
@@ -36,12 +38,12 @@
       }
     },
     asyncData({ store, data, params, $axios }) {
-      const classPromise = $axios.get(
+      const classPromise = http.get(
         `/api/v1/classes/${params.class_id}`
       ).then(res =>
         store.commit('courses/setCurrentClass', res.data.class)
       )
-      const sectionsPromise = $axios.get(
+      const sectionsPromise = http.get(
         `/api/v1/classes/${params.class_id}/sections`
       ).then(res =>
         store.commit('courses/setClassSections', res.data.sections)

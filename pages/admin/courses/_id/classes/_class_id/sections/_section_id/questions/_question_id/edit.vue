@@ -28,6 +28,8 @@
 
 
 <script>
+  import { http } from '@/services/http/config'
+
   export default {
     computed: {
       question() {
@@ -35,7 +37,7 @@
       }
     },
     asyncData({ store, data, params, $axios }) {
-      return $axios.get(
+      return http.get(
         `/api/v1/questions/${params.question_id}`
       ).then(res =>
         store.commit('courses/setCurrentQuestion', res.data.question)

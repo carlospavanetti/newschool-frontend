@@ -11,12 +11,14 @@
 </template>
 
 <script>
+import { http } from '@/services/http/config'
+
 export default {
   computed: {
     courses () { return this.$store.state.courses.list }
   },
   asyncData: ({ store, data, $axios }) =>
-    $axios.get('/api/v1/courses')
+    http.get('/api/v1/courses')
       .then(res =>
         store.commit('courses/set', res.data.courses)
       )
